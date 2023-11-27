@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "guard-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Authing/guard-ios",
+      "state" : {
+        "revision" : "4a7885d61ba547c47254123c908b70eeff639d1b",
+        "version" : "1.4.10"
+      }
+    }
+  ],
+  "version" : 2
+}

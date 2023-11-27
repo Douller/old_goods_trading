@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050939664498",
+    "project_id": "douller-ll",
+    "storage_bucket": "douller-ll.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050939664498:android:7c17722ec04a8fc1e57aeb",
+        "android_client_info": {
+          "package_name": "com.douller.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx2pOiYtN755Xmn7DCF0rGX3fCmDkdkjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

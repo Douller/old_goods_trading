@@ -65,6 +65,7 @@ dependencies:
   geocoding: ^2.1.0
   tim_ui_kit_push_plugin: ^2.6.2
   firebase_core: 2.20.0
+  csslib: 0.17.1
 #  #腾讯云推送
 #  tpns_flutter_plugin:
 #    git:

@@ -234,14 +234,14 @@ class _MyPublishPageState extends State<MyPublishPage> {
                         textFontWeight: FontWeight.w500,
                       ),
                     ),
-                    GoodsStarView(
+                    /*GoodsStarView(
                       starIcon:
                           Constants.getStarIcon(num.parse(model.score ?? '0')),
                       starStr: model.score ?? '0',
                       width: 12,
                       height: 12,
                       fontSize: 14,
-                    ),
+                    ),*/
                   ],
                 ),
                 const SizedBox(height: 3),

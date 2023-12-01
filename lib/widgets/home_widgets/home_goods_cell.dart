@@ -81,7 +81,7 @@ class HomeGoodsCell extends StatelessWidget {
                         textFontWeight: FontWeight.w500,
                       ),
                     ),
-                    tabBarIndex == 1
+                    /*tabBarIndex == 1
                         ? ThemeText(
                             text: goodsList[index].distance ?? '',
                             fontSize: 12,
@@ -94,7 +94,7 @@ class HomeGoodsCell extends StatelessWidget {
                             width: 12,
                             height: 12,
                             fontSize: 14,
-                          ),
+                          ),*/
                   ],
                 ),
                 const SizedBox(height: 3),

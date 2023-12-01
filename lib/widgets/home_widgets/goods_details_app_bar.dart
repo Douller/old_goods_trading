@@ -12,8 +12,8 @@ import '../theme_image.dart';
 class GoodsDetailsAppBar extends StatelessWidget {
   final String? userIcon;
   final String? userName;
-  final String? star;
-  final String starIcon;
+  //final String? star;
+  //final String starIcon;
   final bool isFollow;
   final bool isSeller;
   final GestureTapCallback? onTap;
@@ -23,8 +23,8 @@ class GoodsDetailsAppBar extends StatelessWidget {
     Key? key,
     this.userIcon,
     this.userName,
-    this.star,
-    required this.starIcon,
+    //this.star,
+    //required this.starIcon,
     this.isFollow = false,
     this.onTap,
     this.isSeller = false,
@@ -64,7 +64,7 @@ class GoodsDetailsAppBar extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 13),
+          /*const SizedBox(width: 13),
           GoodsStarView(
             starStr: star ?? '0',
             width: 14,
@@ -72,7 +72,7 @@ class GoodsDetailsAppBar extends StatelessWidget {
             space: 6,
             fontSize: 16,
             starIcon: starIcon,
-          ),
+          ),*/
           Expanded(child: Container()),
           isSeller
               ? Container()

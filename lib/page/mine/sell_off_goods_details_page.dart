@@ -60,7 +60,7 @@ class _SellOffGoodsDetailsPageState extends State<SellOffGoodsDetailsPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 13),
+                  /*const SizedBox(width: 13),
                   GoodsStarView(
                     starStr: widget.model.score ?? '0',
                     width: 14,
@@ -69,7 +69,7 @@ class _SellOffGoodsDetailsPageState extends State<SellOffGoodsDetailsPage> {
                     fontSize: 16,
                     starIcon: Constants.getStarIcon(
                         num.parse(widget.model.score ?? '0')),
-                  ),
+                  ),*/
                 ],
               ),
             ),

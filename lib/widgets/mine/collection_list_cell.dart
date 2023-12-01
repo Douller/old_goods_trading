@@ -8,7 +8,7 @@ import '../../router/app_router.dart';
 import '../../states/my_collection_state.dart';
 import '../aging_degree_view.dart';
 import '../goods_price_text.dart';
-import '../goods_star_view.dart';
+//import '../goods_star_view.dart';
 import '../theme_image.dart';
 import '../theme_text.dart';
 
@@ -112,7 +112,7 @@ class CollectionListCell extends StatelessWidget {
                                 fontSize: 8,
                                 fontWeight: FontWeight.w500,
                               ),
-                              Expanded(child: Container()),
+                              /*Expanded(child: Container()),
                               GoodsStarView(
                                 starIcon: Constants.getStarIcon(
                                     num.parse(model.score ?? '0')),
@@ -120,7 +120,7 @@ class CollectionListCell extends StatelessWidget {
                                 width: 12,
                                 height: 12,
                                 fontSize: 14,
-                              ),
+                              ),*/
                             ],
                           ),
                         ],

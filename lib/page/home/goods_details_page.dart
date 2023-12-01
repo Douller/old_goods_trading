@@ -57,9 +57,9 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
                     userIcon:
                         value.detailsModel?.goodsInfo?.supplierInfo?.thumb,
                     userName: value.detailsModel?.goodsInfo?.supplierInfo?.name,
-                    star: value.detailsModel?.goodsInfo?.score,
+                    /*star: value.detailsModel?.goodsInfo?.score,
                     starIcon: Constants.getStarIcon(
-                        num.parse(value.detailsModel?.goodsInfo?.score ?? '0')),
+                        num.parse(value.detailsModel?.goodsInfo?.score ?? '0')),*/
                     isFollow: value.follow ?? false,
                     onTap: () async {
                       bool isLogin = Constants.isLogin();
@@ -198,7 +198,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
                                   overflow: TextOverflow.ellipsis,
                                   height: 1.5,
                                 ),
-                                const SizedBox(height: 4),
+                                /*const SizedBox(height: 4),
                                 RatingBar.builder(
                                   initialRating: double.parse(
                                       value.detailsModel?.goodsInfo?.score ??
@@ -218,7 +218,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
                                         .withOpacity(0.8),
                                   ),
                                   onRatingUpdate: (rating) {},
-                                ),
+                                ),*/
                                 const SizedBox(height: 4),
                                 Row(
                                   children: [

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class GoodsStarView extends StatelessWidget {
   final String starStr;
@@ -41,3 +41,4 @@ class GoodsStarView extends StatelessWidget {
     );
   }
 }
+*/

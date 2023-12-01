@@ -43,7 +43,7 @@ class Constants {
   static const String addressDefaultKey = 'addressDefaultKey';
 
   //首页评分组件
-  static String getStarIcon(num star) {
+  /*static String getStarIcon(num star) {
     if (star == 0) {
       return "${iconsPath}empty_star.png";
     } else if (star <= 0.5) {
@@ -67,7 +67,7 @@ class Constants {
     } else {
       return "${iconsPath}full_star.png";
     }
-  }
+  }*/
 
   static bool isLogin() {
     String? uid = SharedPreferencesUtils.getLoginUid();

@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage>
                   unselectedLabelColor: const Color(0xff999999),
                   unselectedLabelStyle: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.w500),
-                  indicatorColor: Colors.transparent,
+                  indicatorColor: Color.fromARGB(0, 221, 162, 162),
                   indicatorSize: TabBarIndicatorSize.label,
                   indicatorPadding: const EdgeInsets.symmetric(horizontal: 5),
                   onTap: (int index) {
@@ -142,97 +142,13 @@ class _HomePageState extends State<HomePage>
               Expanded(
                 child: Consumer<HomeState>(
                   builder: (BuildContext context, value, Widget? child) {
-                    return SmartRefresher(
-                        enablePullDown: true,
-                        enablePullUp: true,
-                        controller: _homeViewModel.refreshController,
-                        onRefresh: _homeViewModel.refreshData,
-                        onLoading: _homeViewModel.onLoadingData,
-                        child: ListView(
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
-                          children: [
-                            value.advsList.isEmpty
-                                ? Container()
-                                : Container(
-                                    height: 158,
-                                    margin: const EdgeInsets.only(bottom: 20),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18),
-                                      color: const Color(0xffEEF1F4),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.1),
-                                          offset: const Offset(0, 40),
-                                          blurRadius: 40,
-                                          spreadRadius: 0,
-                                        ),
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(18),
-                                      child: Swiper(
-                                        itemCount: value.advsList.length,
-                                        autoplay: true,
-                                        duration: 500,
-                                        itemBuilder: (context, index) {
-                                          return GestureDetector(
-                                            child: ThemeNetImage(
-                                              imageUrl:
-                                                  value.advsList[index].image,
-                                            ),
-                                          );
-                                        },
-                                        pagination: SwiperPagination(
-                                          builder: DotSwiperPaginationBuilder(
-                                            size: 8,
-                                            activeSize: 10,
-                                            activeColor: const Color(0xffB6AC14)
-                                                .withOpacity(0.8),
-                                            color: const Color(0xffE4D719)
-                                                .withOpacity(0.15),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                            (value.tabBarIndex == 0
-                                        ? value.goodsList
-                                        : value.nearbyGoodsList)
-                                    .isEmpty
-                                ? const NoDataView()
-                                : MasonryGridView.count(
-                                    shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: (value.tabBarIndex == 0
-                                            ? value.goodsList
-                                            : value.nearbyGoodsList)
-                                        .length,
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 4,
-                                    crossAxisSpacing: 4,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () => AppRouter.push(
-                                          context,
-                                          GoodsDetailsPage(
-                                            goodsId:
-                                                value.goodsList[index].id ??
-                                                    '0',
-                                          ),
-                                        ),
-                                        child: HomeGoodsCell(
-                                          index: index,
-                                          goodsList: (value.tabBarIndex == 0
-                                              ? value.goodsList
-                                              : value.nearbyGoodsList),
-                                          tabBarIndex: value.tabBarIndex,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                          ],
-                        ));
+                    return TabBarView(
+                    controller: _tabController,
+                    children: [
+                      _buildSmartRefresher(value.goodsList, value.advsList, 0),
+                      _buildSmartRefresher(value.nearbyGoodsList, value.advsList, 1),
+                    ]
+                    );
                   },
                 ),
               ),
@@ -242,6 +158,99 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
+
+Widget _buildSmartRefresher(List typeList, List advsList, int isNearby) {
+  RefreshController _refreshController = RefreshController(initialRefresh: true, initialLoadStatus: LoadStatus.idle);
+
+  return SmartRefresher(
+    enablePullDown: true,
+    enablePullUp: true,
+    controller: _refreshController,
+    onRefresh: () async {
+      _homeViewModel.refreshData();
+      _refreshController.refreshCompleted(resetFooterState: true);
+    },
+    onLoading: () async {
+      _homeViewModel.onLoadingData();
+      _refreshController.loadComplete();
+      
+    },
+    child: ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      children: [
+        advsList.isEmpty
+            ? Container()
+            : Container(
+                height: 158,
+                margin: const EdgeInsets.only(bottom: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  color: const Color(0xffEEF1F4),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      offset: const Offset(0, 40),
+                      blurRadius: 40,
+                      spreadRadius: 0,
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18),
+                  child: Swiper(
+                    itemCount: advsList.length,
+                    autoplay: true,
+                    duration: 500,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        child: ThemeNetImage(
+                          imageUrl: advsList[index].image,
+                        ),
+                      );
+                    },
+                    pagination: SwiperPagination(
+                      builder: DotSwiperPaginationBuilder(
+                        size: 8,
+                        activeSize: 10,
+                        activeColor:
+                            const Color(0xffB6AC14).withOpacity(0.8),
+                        color: const Color(0xffE4D719)
+                            .withOpacity(0.15),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+        typeList.isEmpty
+            ? const NoDataView()
+            : MasonryGridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: typeList
+                    .length,
+                crossAxisCount: 2,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => AppRouter.push(
+                      context,
+                      GoodsDetailsPage(
+                        goodsId: typeList[index].id ?? '0',
+                      ),
+                    ),
+                    child: HomeGoodsCell(
+                      index: index,
+                      goodsList: typeList,
+                      tabBarIndex: isNearby,
+                    ),
+                  );
+                },
+              ),
+      ],
+    ),
+  );
+}
 
   @override
   bool get wantKeepAlive => true;

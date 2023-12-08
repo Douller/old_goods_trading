@@ -78,6 +78,7 @@ class HomeState with ChangeNotifier {
     }
 
     if(model != null && (model.advs??[]).isNotEmpty){
+      _advsList.clear();
       _advsList.addAll(model.advs??[]);
     }
     notifyListeners();

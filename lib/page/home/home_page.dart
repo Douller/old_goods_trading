@@ -160,19 +160,20 @@ class _HomePageState extends State<HomePage>
   }
 
 Widget _buildSmartRefresher(List typeList, List advsList, int isNearby) {
-  RefreshController _refreshController = RefreshController(initialRefresh: true);
+  RefreshController _refreshController = RefreshController(initialRefresh: true, initialLoadStatus: LoadStatus.idle);
 
   return SmartRefresher(
     enablePullDown: true,
     enablePullUp: true,
     controller: _refreshController,
-    onRefresh: () {
+    onRefresh: () async {
       _homeViewModel.refreshData();
-      _refreshController.refreshCompleted();
+      _refreshController.refreshCompleted(resetFooterState: true);
     },
-    onLoading: () {
-       _homeViewModel.onLoadingData();
+    onLoading: () async {
+      _homeViewModel.onLoadingData();
       _refreshController.loadComplete();
+      
     },
     child: ListView(
       padding: const EdgeInsets.symmetric(horizontal: 4),

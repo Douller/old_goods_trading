@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:old_goods_trading/router/app_router.dart';
+import 'package:old_goods_trading/states/goods_details_state.dart';
 import 'package:old_goods_trading/widgets/goods_price_text.dart';
 import 'package:old_goods_trading/widgets/theme_image.dart';
+import 'package:provider/provider.dart';
 import '../../constants/constants.dart';
 import '../../page/mine/seller_personal_center.dart';
 import '../aging_degree_view.dart';
@@ -13,6 +15,7 @@ class HomeGoodsCell extends StatelessWidget {
   final List goodsList;
   final bool isSupplier; //是否从卖家中心点击 默认false 不是
   final int tabBarIndex; //推荐0  附近1；
+
 
   const HomeGoodsCell({
     Key? key,
@@ -135,28 +138,44 @@ class HomeGoodsCell extends StatelessWidget {
                       );
                     }
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: ThemeNetImage(
-                          imageUrl: goodsList[index].supplierInfo?.thumb,
-                          placeholderPath:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: ThemeNetImage(
+                              imageUrl: goodsList[index].supplierInfo?.thumb,
+                              placeholderPath:
                               "${Constants.placeholderPath}user_placeholder.png",
-                          width: 16,
-                          height: 16,
-                        ),
+                              width: 16,
+                              height: 16,
+                            ),
+                          ),
+                          const SizedBox(width: 3),
+                          ThemeText(
+                            text: goodsList[index].supplierInfo?.name ?? '',
+                            fontSize: 8,
+                            fontWeight: FontWeight.w400,
+                            color: const Color(0xff696D84),
+                          ),
+                          const SizedBox(width: 3),
+                        ],
                       ),
-                      const SizedBox(width: 3),
-                      ThemeText(
-                        text: goodsList[index].supplierInfo?.name ?? '',
-                        fontSize: 8,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xff696D84),
-                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ThemeText(
+                            text: goodsList[index].state ?? '',
+                            fontSize: 8,
+                            fontWeight: FontWeight.w400,
+                            color: const Color(0xff696D84),
+                          ),
+                        ],
+                      )
                     ],
-                  ),
+                  )
                 ),
                 // SizedBox(
                 //   height: 42,
@@ -243,3 +262,5 @@ class HomeGoodsCell extends StatelessWidget {
     );
   }
 }
+
+//渲染的太慢

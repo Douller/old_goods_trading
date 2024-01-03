@@ -15,6 +15,9 @@ import '../../router/app_router.dart';
 import '../../states/user_info_state.dart';
 import '../../widgets/home_widgets/goods_details_app_bar.dart';
 import '../mine/seller_personal_center.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
+
+
 
 class GoodsDetailsPage extends StatefulWidget {
   final String goodsId;
@@ -39,6 +42,8 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
     _goodsDetailsState.getGoodsDetails(widget.goodsId);
     super.initState();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -361,6 +366,22 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
                       const SizedBox(height: 6),
                       ThemeText(
                         text: value.detailsModel?.goodsInfo?.brief ?? "",
+                        color: const Color(0xff484C52).withOpacity(0.4),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 0.5,
+                        height: 1.5,
+                        textAlign: TextAlign.left,
+                      ),
+                      const ThemeText(
+                        text: '地址',
+                        color: Color(0xff484C52),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      const SizedBox(height: 6),
+                      ThemeText(
+                        text: value.currentAddress ?? "Unknown",
                         color: const Color(0xff484C52).withOpacity(0.4),
                         fontSize: 12,
                         fontWeight: FontWeight.w400,

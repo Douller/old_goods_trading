@@ -1,3 +1,4 @@
+import 'package:old_goods_trading/net/service_repository.dart';
 class HomeGoodsListModel {
   GoodsLists? goodsLists;
   List<Advs>? advs;
@@ -68,6 +69,7 @@ class GoodsInfoModel {
   String? selfPickup;
   String? boxSize;
   String? displayBuyBoutton;
+  String? state;
 
   GoodsInfoModel({
     this.id,
@@ -102,6 +104,7 @@ class GoodsInfoModel {
     this.selfPickup,
     this.boxSize,
     this.displayBuyBoutton,
+    this.state,
   });
 
   GoodsInfoModel.fromJson(Map<String, dynamic> json) {

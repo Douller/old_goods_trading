@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:old_goods_trading/config/Config.dart';
 import 'package:old_goods_trading/model/bank_model.dart';
 import 'package:old_goods_trading/net/http_manager.dart';
@@ -33,6 +34,9 @@ import '../model/user_center_model.dart';
 import '../model/user_info_model.dart';
 import '../model/version_model.dart';
 import '../model/withdraw_record_model.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:old_goods_trading/constants/constants.dart';
 
 class ServiceRepository {
   ///获取首页商品列表
@@ -396,6 +400,57 @@ class ServiceRepository {
     }
     return res;
   }
+
+  // 获取产品mapbox的地址
+  static Future<String> getAddressInfo(String longitude, String latitude) async {
+
+    double lng = double.parse(longitude);
+    double lat = double.parse(latitude);
+
+    final String apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/$lng,$lat.json?language=en&access_token=${Constants.mapboxAccessToken}';
+
+    try {
+      final http.Response response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        // 响应成功，解析 JSON 数据
+        final Map<String, dynamic> jsonData = json.decode(response.body);
+
+        String address = jsonData['features'][0]['place_name'] ?? 'Unknown';
+        return address;
+      }
+    } catch (e) {
+      // 发生异常，输出异常信息
+      debugPrint('Error during API request: $e');
+    }
+    return "Unknown Address";
+  }
+
+  // 获取产品mapbox的州
+  static Future<String> getStateInfo(String longitude, String latitude) async {
+
+    double lng = double.parse(longitude);
+    double lat = double.parse(latitude);
+
+    final String apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/$lng,$lat.json?types=region&language=en&access_token=${Constants.mapboxAccessToken}';
+
+    try {
+      final http.Response response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        // 响应成功，解析 JSON 数据
+        final Map<String, dynamic> jsonData = json.decode(response.body);
+
+        String state = jsonData['features'][0]['text'] ?? 'Unknown';
+        return state;
+      }
+    } catch (e) {
+      // 发生异常，输出异常信息
+      debugPrint('Error during API request: $e');
+    }
+    return "Unknown Address";
+  }
+
 
   ///获取国家
   static Future<List<Area>> getAreaCountry() async {

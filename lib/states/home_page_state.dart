@@ -14,6 +14,7 @@ class HomeState with ChangeNotifier {
 
   int get tabBarIndex => _tabBarIndex;
 
+
   final RefreshController _refreshController = RefreshController(
       initialRefresh: true, initialLoadStatus: LoadStatus.idle);
 
@@ -73,6 +74,13 @@ class HomeState with ChangeNotifier {
       if (model.goodsLists!.data!.length < 10) {
         _refreshController.loadNoData();
       }
+
+      // get state info of goods according to lon&lat
+      for(GoodsInfoModel item in model.goodsLists!.data!){
+        String? state = await ServiceRepository.getStateInfo(item.longitude ?? '0', item.latitude ?? '0');
+        item.state = state;
+      }
+
     } else {
       _refreshController.loadNoData();
     }
@@ -108,6 +116,13 @@ class HomeState with ChangeNotifier {
       if (model.goodsLists!.data!.length < 10) {
         _refreshController.loadNoData();
       }
+
+      // get state info of goods according to lon&lat
+      for(GoodsInfoModel item in model.goodsLists!.data!){
+        String? state = await ServiceRepository.getStateInfo(item.longitude ?? '0', item.latitude ?? '0');
+        item.state = state;
+      }
+
     } else {
       _refreshController.loadNoData();
     }

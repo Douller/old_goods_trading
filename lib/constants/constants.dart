@@ -42,6 +42,10 @@ class Constants {
   static const String userInfoKey = 'userInfoKey';
   static const String addressDefaultKey = 'addressDefaultKey';
 
+  // Mapbox api token
+  static const String mapboxAccessToken = 'pk.eyJ1IjoiaHk2NiIsImEiOiJjbHExbnRzMG8wYmRuMnBwY2l2OTQxajEwIn0.11XyNqgYe6e8WoMPNzmWLA';
+
+
   //首页评分组件
   /*static String getStarIcon(num star) {
     if (star == 0) {

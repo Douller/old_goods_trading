@@ -66,6 +66,7 @@ dependencies:
   tim_ui_kit_push_plugin: ^2.6.2
   firebase_core: 2.20.0
   csslib: 0.17.1
+  mapbox_gl: ^0.16.0
 #  #腾讯云推送
 #  tpns_flutter_plugin:
 #    git:

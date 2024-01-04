@@ -168,9 +168,9 @@ class HomeGoodsCell extends StatelessWidget {
                         children: [
                           ThemeText(
                             text: goodsList[index].state ?? '',
-                            fontSize: 8,
+                            fontSize: 10,
                             fontWeight: FontWeight.w400,
-                            color: const Color(0xff696D84),
+                            color: const Color(0xff000000),
                           ),
                         ],
                       )

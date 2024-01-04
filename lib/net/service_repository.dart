@@ -407,7 +407,7 @@ class ServiceRepository {
     double lng = double.parse(longitude);
     double lat = double.parse(latitude);
 
-    final String apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/$lng,$lat.json?language=en&access_token=${Constants.mapboxAccessToken}';
+    final String apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/$lng,$lat.json?types=place&language=en&access_token=${Constants.mapboxAccessToken}';
 
     try {
       final http.Response response = await http.get(Uri.parse(apiUrl));

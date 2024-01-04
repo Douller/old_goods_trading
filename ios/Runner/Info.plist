@@ -23,6 +23,8 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
+	<key>MBXAccessToken</key>
+    <string>pk.eyJ1IjoiaHk2NiIsImEiOiJjbHExbnRzMG8wYmRuMnBwY2l2OTQxajEwIn0.11XyNqgYe6e8WoMPNzmWLA</string>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>

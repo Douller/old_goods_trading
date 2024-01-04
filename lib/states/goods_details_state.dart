@@ -20,6 +20,11 @@ class GoodsDetailsState with ChangeNotifier {
 
   bool? get collect => _collect;
 
+  String? _currentAddress;
+
+  String? get currentAddress => _currentAddress;
+
+
   Future<void> getGoodsDetails(String goodsId) async {
     ToastUtils.showLoading();
     _detailsModel = await ServiceRepository.getGoodsInfo(id: goodsId);
@@ -29,8 +34,12 @@ class GoodsDetailsState with ChangeNotifier {
 
     (_detailsModel?.isCollect ?? 0) == 0 ? _collect = false : _collect = true;
 
+    // Get address information
+    _currentAddress = await ServiceRepository.getAddressInfo(_detailsModel?.goodsInfo?.longitude ?? '', _detailsModel?.goodsInfo?.latitude ?? '');
+
     notifyListeners();
   }
+
 
   ///关注和收藏
   Future<void> collectAndAdd({

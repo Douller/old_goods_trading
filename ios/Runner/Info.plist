@@ -23,8 +23,6 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
-	<key>MBXAccessToken</key>
-    <string>pk.eyJ1IjoiaHk2NiIsImEiOiJjbHExbnRzMG8wYmRuMnBwY2l2OTQxajEwIn0.11XyNqgYe6e8WoMPNzmWLA</string>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
@@ -67,6 +65,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MBXAccessToken</key>
+	<string>sk.eyJ1IjoiZG91bGxlciIsImEiOiJjbHIyaHd5MHYwNTl5MmlrOGlzZmF4eWkwIn0.9Hqq6SuYfHbgrrau6G59-w</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -97,8 +97,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>flutter_apns.disable_firebase_core</key>
-	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -113,6 +111,8 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>flutter_apns.disable_firebase_core</key>
 	<false/>
 </dict>
 </plist>

@@ -3,6 +3,7 @@ import 'package:old_goods_trading/utils/toast.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import '../model/home_goods_list_model.dart';
 import '../net/service_repository.dart';
+import 'package:haversine_distance/haversine_distance.dart';
 
 class HomeState with ChangeNotifier {
   int _page = 1;
@@ -111,7 +112,19 @@ class HomeState with ChangeNotifier {
         model.goodsLists != null &&
         model.goodsLists?.data != null &&
         model.goodsLists!.data!.isNotEmpty) {
-      _nearbyGoodsList.addAll(model.goodsLists!.data!);
+      // _nearbyGoodsList.addAll(model.goodsLists!.data!);
+
+      final startCoordinate = new Location(double.parse(latitude), double.parse(longitude));
+
+      for(GoodsInfoModel item in model.goodsLists!.data!){
+        final endCoordinate = new Location(double.parse(item.latitude!), double.parse(item.longitude!));
+        final haversineDistance = HaversineDistance();
+        final distance = haversineDistance.haversine(startCoordinate, endCoordinate, Unit.MILE).floor();
+
+        if(distance <= 100){
+          _nearbyGoodsList.add(item);
+        }
+      }
 
       if (model.goodsLists!.data!.length < 10) {
         _refreshController.loadNoData();
@@ -122,6 +135,8 @@ class HomeState with ChangeNotifier {
         String? state = await ServiceRepository.getStateInfo(item.longitude ?? '0', item.latitude ?? '0');
         item.state = state;
       }
+
+
 
     } else {
       _refreshController.loadNoData();

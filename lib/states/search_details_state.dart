@@ -135,6 +135,13 @@ class SearchDetailsState with ChangeNotifier {
         _refreshController.loadNoData();
       }
     }
+
+    // get state info of goods according to lon&lat
+    for(GoodsInfoModel item in dataList){
+      String? state = await ServiceRepository.getStateInfo(item.longitude ?? '0', item.latitude ?? '0');
+      item.state = state;
+    }
+
     _searchDetailsDataList.addAll(dataList);
     notifyListeners();
   }

@@ -262,5 +262,3 @@ class HomeGoodsCell extends StatelessWidget {
     );
   }
 }
-
-//渲染的太慢

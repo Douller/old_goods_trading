@@ -43,7 +43,7 @@ class Constants {
   static const String addressDefaultKey = 'addressDefaultKey';
 
   // Mapbox api token
-  static const String mapboxAccessToken = 'pk.eyJ1IjoiZG91bGxlciIsImEiOiJjbGx1ZHR0ZWcxanE3M3JucTA2bmNpOXZ4In0.1gSpzBfOqHPQEcSJdCmtUw';
+  static const String mapboxAccessToken = 'sk.eyJ1IjoiZG91bGxlciIsImEiOiJjbHIyaHd5MHYwNTl5MmlrOGlzZmF4eWkwIn0.9Hqq6SuYfHbgrrau6G59-w';
 
 
   //首页评分组件

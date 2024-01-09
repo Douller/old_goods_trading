@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:old_goods_trading/constants/constants.dart';
 import 'package:old_goods_trading/utils/toast.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import '../model/home_goods_list_model.dart';
@@ -114,15 +115,25 @@ class HomeState with ChangeNotifier {
         model.goodsLists!.data!.isNotEmpty) {
       // _nearbyGoodsList.addAll(model.goodsLists!.data!);
 
-      final startCoordinate = new Location(double.parse(latitude), double.parse(longitude));
+      // set user's location as start coordinate
+      final startCoordinate = Location(double.parse(latitude), double.parse(longitude));
 
       for(GoodsInfoModel item in model.goodsLists!.data!){
-        final endCoordinate = new Location(double.parse(item.latitude!), double.parse(item.longitude!));
+        // set each good's location as end coordinate
+        final endCoordinate = Location(double.parse(item.latitude!), double.parse(item.longitude!));
+
+        // calculate distance between start and end location
         final haversineDistance = HaversineDistance();
         final distance = haversineDistance.haversine(startCoordinate, endCoordinate, Unit.MILE).floor();
 
-        if(distance <= 100){
+        // only display goods within 100 miles
+        if(distance <= Constants.maxDistance){
           _nearbyGoodsList.add(item);
+        }
+
+        // if no good within 100 miles, alert '当前位置附近没有商品'
+        if(_nearbyGoodsList.isEmpty){
+          ToastUtils.showText(text: '当前位置附近没有商品');
         }
       }
 
@@ -135,8 +146,6 @@ class HomeState with ChangeNotifier {
         String? state = await ServiceRepository.getStateInfo(item.longitude ?? '0', item.latitude ?? '0');
         item.state = state;
       }
-
-
 
     } else {
       _refreshController.loadNoData();

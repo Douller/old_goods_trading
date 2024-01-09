@@ -45,6 +45,8 @@ class Constants {
   // Mapbox api token
   static const String mapboxAccessToken = 'sk.eyJ1IjoiZG91bGxlciIsImEiOiJjbHIyaHd5MHYwNTl5MmlrOGlzZmF4eWkwIn0.9Hqq6SuYfHbgrrau6G59-w';
 
+  // Max distance of nearby good (miles)
+  static const double maxDistance = 100.0;
 
   //首页评分组件
   /*static String getStarIcon(num star) {

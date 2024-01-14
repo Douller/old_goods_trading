@@ -15,7 +15,7 @@ import '../../router/app_router.dart';
 import '../../states/user_info_state.dart';
 import '../../widgets/home_widgets/goods_details_app_bar.dart';
 import '../mine/seller_personal_center.dart';
-import 'package:mapbox_gl/mapbox_gl.dart';
+// import 'package:mapbox_gl/mapbox_gl.dart';
 
 
 

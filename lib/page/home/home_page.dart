@@ -19,6 +19,7 @@ import '../../utils/package_info.dart';
 import '../../widgets/category_widgets/category_top_bar.dart';
 import '../../widgets/home_widgets/home_goods_cell.dart';
 import '../../widgets/no_data_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -206,6 +207,9 @@ class _HomePageState extends State<HomePage>
                     child: ThemeNetImage(
                       imageUrl: advsList[index].image,
                     ),
+                    onTap: () {
+                      _launchInBrowser(advsList, index); // Function to open "google.com"
+                    },
                   );
                 },
                 pagination: SwiperPagination(
@@ -254,4 +258,14 @@ class _HomePageState extends State<HomePage>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+
+Future<void> _launchInBrowser(List advsList,  int index) async {
+  final uri = Uri.parse(advsList[index].jump.data);
+  try {
+    await launchUrl(uri);
+  } catch (e) {
+    ToastUtils.showText(text: 'Error launching advertisement');
+  }
 }

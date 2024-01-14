@@ -61,6 +61,7 @@ class HomeState with ChangeNotifier {
     }
   }
 
+
   Future<void> _getData() async {
     HomeGoodsListModel? model = await ServiceRepository.getHomeGoodsList(
         page: _page.toString(), pageSize: '10');

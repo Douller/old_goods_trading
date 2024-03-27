@@ -558,7 +558,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Runner/WeChatSDK",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -800,7 +800,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Runner/WeChatSDK",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -932,7 +932,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Runner/WeChatSDK",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
